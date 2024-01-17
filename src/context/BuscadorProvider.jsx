@@ -6,6 +6,7 @@ const BuscadorProvider = ({children}) => {
 
     const [nombrePais, setNombrePais] = useState('')
     const [cargando, setCargando] = useState(false)
+    const [error, setError] = useState('')
 
     const handleSubmit = (e) => {
 
@@ -17,7 +18,7 @@ const BuscadorProvider = ({children}) => {
 
             setCargando(false)
 
-            return console.log('Campo vacío')
+            return setError('¡Debe completar el campo vacío!')
 
         }
 
@@ -51,8 +52,14 @@ const BuscadorProvider = ({children}) => {
 
     }
 
+    const cerrarModalError = () => {
+
+        setError('')
+
+    }
+
   return (
-    <BuscadorContext.Provider value={{nombrePais, handleChangeNombrePais, handleSubmit, cargando}}>
+    <BuscadorContext.Provider value={{nombrePais, handleChangeNombrePais, handleSubmit, cargando, error, cerrarModalError}}>
         {children}
     </BuscadorContext.Provider>
   )
