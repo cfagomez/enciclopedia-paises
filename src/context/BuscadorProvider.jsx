@@ -7,6 +7,8 @@ const BuscadorProvider = ({children}) => {
     const [nombrePais, setNombrePais] = useState('')
     const [cargando, setCargando] = useState(false)
     const [error, setError] = useState('')
+    const [resultadoBusqueda, setResultadoBusqueda] = useState([])
+    const [modalPais, setModalPais] = useState(false)
 
     const handleSubmit = (e) => {
 
@@ -30,10 +32,10 @@ const BuscadorProvider = ({children}) => {
 
         try {
 
-            const url = `https://restcountries.com/v3.1/name/${nombrePais}`
+            const url = `https://restcountries.com/v3.1/translation/${nombrePais}`
             const respuesta = await fetch(url)
             const resultado = await respuesta.json()
-            console.log(resultado)
+            setResultadoBusqueda(resultado)
 
         } catch (error) {
 
@@ -58,8 +60,42 @@ const BuscadorProvider = ({children}) => {
 
     }
 
+    const miembroONU = (estado) => {
+
+        if (estado === true) {
+
+            return ('Miembro')
+
+        } else {
+
+            return ('No es miembro')
+
+        }
+
+    }
+
+    const soberaniaPais = (estado) => {
+
+        if (estado === true) {
+
+            return ('Reconocida')
+
+        } else {
+
+            return ('No reconocida')
+
+        }
+
+    }
+
+    const activarModalPais = () => {
+
+        setModalPais(!modalPais)
+
+    }
+
   return (
-    <BuscadorContext.Provider value={{nombrePais, handleChangeNombrePais, handleSubmit, cargando, error, cerrarModalError}}>
+    <BuscadorContext.Provider value={{nombrePais, handleChangeNombrePais, handleSubmit, cargando, error, cerrarModalError, resultadoBusqueda, miembroONU, soberaniaPais, activarModalPais, modalPais}}>
         {children}
     </BuscadorContext.Provider>
   )
