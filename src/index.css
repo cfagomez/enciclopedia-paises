@@ -377,29 +377,84 @@ h1 {
 
 /* RESULTADO */
 
+table {
 
-@media (min-width:768px) {
+  border-collapse: collapse;
+  margin-top: 10px;
+  width: 100%;
 
-  table {
+}
 
-    border-collapse: collapse;
-    width: 100%;
-  
+th, td {
+
+  border: 1px solid rgb(15, 15, 15);
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 1.25rem;
+
+}
+
+th {
+
+  background-color: rgb(188, 171, 174);
+
+}
+
+.boton-nombre-pais {
+
+  font-size: 1.25rem;
+
+}
+
+.boton-nombre-pais:hover {
+
+  text-decoration: underline;
+  cursor: pointer;
+
+}
+
+.boton-nombre-pais:active {
+
+  color: rgb(250, 131, 52);
+
+}
+
+table hr {
+
+  display: none;
+
+}
+
+@media (max-width:768px) {
+
+  .pais, .bandera, .capital, .continente, .estatus, .soberania, .capital-valor, .continente-valor, .estatus-valor, .soberania-valor {
+
+    display: none;
+
   }
-  
-  th, td {
-  
-    border: 1px solid rgb(15, 15, 15);
+
+  tr {
+
     padding: 10px 20px;
+    display: flex;
+    flex-direction: column-reverse;
     text-align: center;
-    font-size: 1.25rem;
-  
+    margin-bottom: 20px;
+
   }
-  
-  th {
-  
-    background-color: rgb(188, 171, 174);
-  
+
+  td {
+
+    padding: 0;
+    border: none;
+
+  }
+
+  td img {
+
+    width: 100%;
+    height: 100%;
+
   }
 
   .boton-nombre-pais {
@@ -407,20 +462,7 @@ h1 {
     background-color: inherit;
     border: none;
     color: rgb(61,110,206);
-    font-size: 1.25rem;
-
-  }
-
-  .boton-nombre-pais:hover {
-
-    text-decoration: underline;
-    cursor: pointer;
-
-  }
-
-  .boton-nombre-pais:active {
-
-    color: rgb(250, 131, 52);
+    font-size: 1.5rem;
 
   }
 
@@ -433,7 +475,7 @@ h1 {
   display: flex;
   position: fixed;
   z-index: 1;
-  padding: 0 10px 0 10px;
+  padding: 10px;
   left: 0;
   top: 0;
   width: 100%;
@@ -469,6 +511,7 @@ h1 {
   background-color: rgb(188, 171, 174);
   border-bottom: 1px solid rgb(15, 15, 15);
   padding: 10px 20px;
+  line-height: 1.3;
 
 }
 
@@ -492,18 +535,12 @@ h1 {
 
 }
 
-.banderas-container img {
-
-  width: 150px;
-  height: 125px;
-
-}
-
 .bandera-container {
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
 }
 
@@ -539,6 +576,7 @@ h1 {
   width: 50%;
   font-size: 1.25rem;
   margin: 0;
+  line-height: 1.3;
 
 }
 
@@ -554,6 +592,32 @@ h1 {
   flex-direction: row;
   justify-content: flex-start;
   gap: 7.5px;
+
+}
+
+.boton-modal-pais {
+
+  padding: 5px 10px;
+  margin: 10px 0 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: black;
+  background-color: rgb(188, 171, 174);
+  cursor: pointer;
+
+}
+
+.boton-modal-pais:hover {
+
+  background-color: rgb(113, 105, 105);
+
+}
+
+.boton-modal-pais:focus {
+
+  background-color: rgb(45, 46, 46);
+  color: rgb(251, 251, 251);
 
 }
   

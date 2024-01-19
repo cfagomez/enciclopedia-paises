@@ -9,12 +9,12 @@ const Resultado = () => {
       <table>
         <tbody>
             <tr>
-                <th>Estado soberano</th>
-                <th>Capital</th>
-                <th>Continente</th>
-                <th>Estatus ONU</th>
-                <th>Soberanía</th>
-                <th>Bandera</th>
+                <th className="pais">Estado soberano</th>
+                <th className="capital">Capital</th>
+                <th className="continente">Continente</th>
+                <th className="estatus">Estatus ONU</th>
+                <th className="soberania">Soberanía</th>
+                <th className="bandera">Bandera</th>
             </tr>
                 {
                     resultadoBusqueda.map( resultado => (
@@ -25,10 +25,10 @@ const Resultado = () => {
                                 onClick={activarModalPais}
                                 >
                                     {resultado.translations.spa.common}</button></td>
-                            <td>{resultado.capital}</td>
-                            <td>{resultado.region}</td>
-                            <td>{miembroONU(resultado.unMember)}</td>
-                            <td>{soberaniaPais(resultado.independent)}</td>
+                            <td className="capital-valor">{resultado.capital}</td>
+                            <td className="continente-valor">{resultado.region}</td>
+                            <td className="estatus-valor">{miembroONU(resultado.unMember)}</td>
+                            <td className="soberania-valor">{soberaniaPais(resultado.independent)}</td>
                             <td>
                                 <img 
                                     src={resultado.flags.svg}

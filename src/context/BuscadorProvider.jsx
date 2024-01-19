@@ -9,10 +9,12 @@ const BuscadorProvider = ({children}) => {
     const [error, setError] = useState('')
     const [resultadoBusqueda, setResultadoBusqueda] = useState([])
     const [modalPais, setModalPais] = useState(false)
+    const [noResultado, setNoResultado] = useState(null)
 
     const handleSubmit = (e) => {
 
         setCargando(true)
+        setNoResultado(null)
 
         e.preventDefault()
 
@@ -39,7 +41,7 @@ const BuscadorProvider = ({children}) => {
 
         } catch (error) {
 
-            console.log(error)
+            setNoResultado('No se han encontrado resultados')
 
         }
 
@@ -95,7 +97,7 @@ const BuscadorProvider = ({children}) => {
     }
 
   return (
-    <BuscadorContext.Provider value={{nombrePais, handleChangeNombrePais, handleSubmit, cargando, error, cerrarModalError, resultadoBusqueda, miembroONU, soberaniaPais, activarModalPais, modalPais}}>
+    <BuscadorContext.Provider value={{nombrePais, handleChangeNombrePais, handleSubmit, cargando, error, cerrarModalError, resultadoBusqueda, miembroONU, soberaniaPais, activarModalPais, modalPais, noResultado}}>
         {children}
     </BuscadorContext.Provider>
   )

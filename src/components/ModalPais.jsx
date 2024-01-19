@@ -4,16 +4,25 @@ import useBuscador from '../hooks/useBuscador'
 const ModalPais = () => {
 
     const {resultadoBusqueda, activarModalPais} = useBuscador()
-    const {name, flags, capital, languages, area, population, currencies, subregion, latlng, timezones, coatOfArms} = resultadoBusqueda[0]
+    const {name, flags, capital, languages, area, population, currencies, subregion, timezones, coatOfArms} = resultadoBusqueda[0]
     const {common, official} = name
     const {svg, alt} = flags
     const {svg: imagenEscudo} = coatOfArms
 
-    const lenguajes = Object.values(languages)
-    const moneda = Object.values(currencies)
-    const arrayMoneda = Object.values(moneda[0])
+    const lenguajesToArray = Object.values(languages)
+    const lenguajesToString = lenguajesToArray.toString()
+    const lenguajes = lenguajesToString.replace(',', ', ')
 
-    console.log(arrayMoneda)
+    const monedaProperty = Object.values(currencies)
+    const monedaObject = monedaProperty[0]
+    const monedaToArray = Object.values(monedaObject)
+    const monedaToString = monedaToArray.toString()
+    const moneda = monedaToString.replace(',', ' ')
+
+    const husoHorarioToString = timezones.toString()
+    const husoHorario = husoHorarioToString.replaceAll(',', ', ')
+
+    console.log(husoHorario)
 
   return (
     <div className='pais-modal-container'>
@@ -27,8 +36,8 @@ const ModalPais = () => {
                     <img 
                         src={svg} 
                         alt={alt}
-                        width="250px"
-                        height="175px"
+                        width="135px"
+                        height="68px"
                     />
                     <p>Bandera</p>
                 </div>
@@ -36,8 +45,8 @@ const ModalPais = () => {
                     <img 
                         src={imagenEscudo}
                         alt="Escudo"
-                        width="250px"
-                        height="175px" 
+                        width="105px"
+                        height="105px" 
                     />
                     <p>Escudo</p>
                 </div>
@@ -45,17 +54,11 @@ const ModalPais = () => {
             <div className='datos-extra-container'>
                 <div className='dato-extra-container'>
                     <p>Capital</p>
-                    <p>Capital {capital}</p>
+                    <p>{capital}</p>
                 </div>
                 <div className='dato-extra-container'>
                     <p>Idiomas</p>
-                        {
-                            lenguajes.map( lenguaje => (
-
-                                <p key={lenguaje}>{lenguaje}</p>
-
-                            ))
-                        }
+                    <p>{lenguajes}</p>
                 </div>
                 <div className='dato-extra-container'>
                     <p>Superficie</p>
@@ -67,13 +70,16 @@ const ModalPais = () => {
                 </div>
                 <div className='dato-extra-container'>
                     <p>Moneda</p>
-                    <p>{arrayMoneda[0]}</p>
+                    <p>{moneda}</p>
                 </div>
                 <div className='dato-extra-container'>
                     <p>Continente</p>
                     <p>{subregion}</p>
                 </div>
-                <p>{timezones}</p>
+                <div className='dato-extra-container'>
+                    <p>Huso horario:</p>
+                    <p>{husoHorario}</p>
+                </div>
             </div>
             <button
                 type='button'
