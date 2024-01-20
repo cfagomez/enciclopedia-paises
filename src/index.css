@@ -91,7 +91,7 @@ input[type="submit"]:hover {
 
 }
 
-input[type="submit"]:focus {
+input[type="submit"]:active {
 
   background-color: rgb(45, 46, 46);
   color: rgb(251, 251, 251);
@@ -383,6 +383,30 @@ h1 {
 }
 
 /* RESULTADO */
+
+.contenedor-tabla {
+
+  text-align: center;
+
+}
+
+.volver-atras-boton {
+
+  background-color: rgb(251, 251, 251);
+  border: none;
+  margin-top: 25px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: rgb(12, 12, 12);
+  text-decoration: underline;
+
+}
+
+.volver-atras-boton:active {
+
+  color: rgb(250, 131, 52);
+
+}
 
 table {
 

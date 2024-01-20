@@ -1,13 +1,14 @@
 import Formulario from "./components/Formulario"
 import ModalError from "./components/ModalError"
-import Resultado from "./components/Resultado"
+import ListadoPaises from "./components/ListadoPaises"
 import Spinner from "./components/Spinner"
 import useBuscador from "./hooks/useBuscador"
 import ModalPais from "./components/ModalPais"
+import NoResultado from "./components/NoResultado"
 
 function App() {
 
-  const {cargando, error, modalPais} = useBuscador()
+  const {cargando, error, modalPais, listaPaises, noResultado, resultadoBusqueda} = useBuscador()
 
   return (
     <>
@@ -26,7 +27,7 @@ function App() {
         <hr />
         {
 
-          cargando ? <Spinner /> : <Resultado />
+          cargando ? <Spinner /> : resultadoBusqueda.length > 0 ? <ListadoPaises /> : noResultado ? <NoResultado /> : <ListadoPaises />
 
         }
         {

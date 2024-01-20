@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react"
+import { createContext, useState, useEffect} from "react"
 
 export const BuscadorContext = createContext()
 
@@ -7,15 +7,56 @@ const BuscadorProvider = ({children}) => {
     const [nombrePais, setNombrePais] = useState('')
     const [cargando, setCargando] = useState(false)
     const [error, setError] = useState('')
-    const [resultadoBusqueda, setResultadoBusqueda] = useState([])
+    const [listaPaises, setListaPaises] = useState([])
     const [modalPais, setModalPais] = useState(false)
-    const [noResultado, setNoResultado] = useState(null)
+    const [noResultado, setNoResultado] = useState(false)
     const [paisSeleccionado, setPaisSeleccionado] = useState('')
+    const [resultadoBusqueda, setResultadoBusqueda] = useState([])
+
+    useEffect(() => {
+
+        const obtenerPaises = async () => {
+
+            setCargando(true)
+
+            try {
+    
+                const url = `https://restcountries.com/v3.1/all`
+                const respuesta = await fetch(url)
+                const resultado = await respuesta.json()
+
+                const resultadoOrdenado = resultado.sort(function (a, b) {
+                    if (a.name.common < b.name.common) {
+                      return -1;
+                    }
+                    if (a.name.common > b.name.common) {
+                      return 1;
+                    }
+                    return 0;
+                  });
+
+                  setCargando(false)
+                  setListaPaises(resultadoOrdenado)
+    
+            } catch (error) {
+    
+                console.log(error)
+    
+            }
+    
+            setNombrePais('')
+    
+        }
+
+        obtenerPaises()
+
+    }, [])
 
     const handleSubmit = (e) => {
 
         setCargando(true)
-        setNoResultado(null)
+        setNoResultado(false)
+        setResultadoBusqueda([])
 
         e.preventDefault()
 
@@ -26,6 +67,27 @@ const BuscadorProvider = ({children}) => {
             return setError('¡Debe completar el campo vacío!')
 
         }
+
+        filtrarPais(nombrePais)
+        setCargando(false)
+
+    }
+
+    const filtrarPais = (pais) => {
+
+        const paisMayuscula = pais.charAt(0).toUpperCase() + pais.slice(1)
+
+        const paisFiltrado = listaPaises.filter( p => p.name.common === paisMayuscula)
+
+        if (paisFiltrado.length === 0) {
+
+            setNoResultado(true)
+
+            return
+
+        }
+
+        setResultadoBusqueda(paisFiltrado)
 
     }
 
@@ -82,8 +144,16 @@ const BuscadorProvider = ({children}) => {
 
     }
 
+    const limpiarResultadoBusqueda = () => {
+
+        setResultadoBusqueda([])
+        setNoResultado(false)
+        setNombrePais('')
+
+    }
+
   return (
-    <BuscadorContext.Provider value={{nombrePais, setNombrePais, handleChangeNombrePais, handleSubmit, cargando, setCargando, error, cerrarModalError, resultadoBusqueda, setResultadoBusqueda, miembroONU, soberaniaPais, activarModalPais, modalPais, noResultado, paisSeleccionado}}>
+    <BuscadorContext.Provider value={{nombrePais, setNombrePais, handleChangeNombrePais, handleSubmit, cargando, setCargando, error, cerrarModalError, listaPaises, setListaPaises, miembroONU, soberaniaPais, activarModalPais, modalPais, noResultado, paisSeleccionado, resultadoBusqueda, limpiarResultadoBusqueda}}>
         {children}
     </BuscadorContext.Provider>
   )
