@@ -3,8 +3,8 @@ import useBuscador from '../hooks/useBuscador'
 
 const ModalPais = () => {
 
-    const {resultadoBusqueda, activarModalPais} = useBuscador()
-    const {name, flags, capital, languages, area, population, currencies, subregion, timezones, coatOfArms} = resultadoBusqueda[0]
+    const {paisSeleccionado, activarModalPais} = useBuscador()
+    const {name, flags, capital, languages, area, population, currencies, subregion, timezones, coatOfArms} = paisSeleccionado
     const {common, official} = name
     const {svg, alt} = flags
     const {svg: imagenEscudo} = coatOfArms
@@ -21,8 +21,6 @@ const ModalPais = () => {
 
     const husoHorarioToString = timezones.toString()
     const husoHorario = husoHorarioToString.replaceAll(',', ', ')
-
-    console.log(husoHorario)
 
   return (
     <div className='pais-modal-container'>

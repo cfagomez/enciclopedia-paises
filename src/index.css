@@ -35,8 +35,9 @@ h1, h2, h3, h4, .logo {
 
 .logo {
 
-font-size: 2rem;
+font-size: 4rem;
 font-variant: small-caps;
+margin: 25px 0;
 
 }
 
@@ -104,6 +105,12 @@ input[type="submit"]:focus {
     flex-direction: row;
     justify-content: flex-start;
     gap: 20px;
+
+  }
+
+  .logo {
+
+    font-size: 2rem;
 
   }
 
@@ -403,6 +410,9 @@ th {
 .boton-nombre-pais {
 
   font-size: 1.25rem;
+  background-color: inherit;
+  border: none;
+  color: rgb(61,110,206);
 
 }
 
@@ -618,6 +628,45 @@ table hr {
 
   background-color: rgb(45, 46, 46);
   color: rgb(251, 251, 251);
+
+}
+
+@media (min-width:768px) {
+
+  .pais-modal-content {
+
+    width: 50%;
+
+  }
+
+}
+
+/* NO RESULTADO */
+
+.no-resultado-container {
+
+  width: 100%;
+  padding: 50px 100px;
+  text-align: center;
+
+}
+
+.no-resultado-container p {
+
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgb(15, 15, 15);
+
+}
+
+@media (min-width:768px) {
+
+  .no-resultado-container p {
+
+    font-size: 2rem;
+
+  }
 
 }
   

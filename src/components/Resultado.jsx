@@ -1,8 +1,46 @@
+import { useEffect } from "react"
 import useBuscador from "../hooks/useBuscador"
 
 const Resultado = () => {
 
-    const {resultadoBusqueda, miembroONU, soberaniaPais, activarModalPais} = useBuscador()
+    const {resultadoBusqueda, setResultadoBusqueda, miembroONU, soberaniaPais, activarModalPais, setCargando, setNombrePais} = useBuscador()
+
+    useEffect(() => {
+
+        const buscarPais = async () => {
+
+            try {
+    
+                const url = `https://restcountries.com/v3.1/all`
+                const respuesta = await fetch(url)
+                const resultado = await respuesta.json()
+
+                const resultadoOrdenado = resultado.sort(function (a, b) {
+                    if (a.name.common < b.name.common) {
+                      return -1;
+                    }
+                    if (a.name.common > b.name.common) {
+                      return 1;
+                    }
+                    return 0;
+                  });
+
+                  setResultadoBusqueda(resultadoOrdenado)
+    
+            } catch (error) {
+    
+                console.log(error)
+    
+            }
+    
+            setCargando(false)
+            setNombrePais('')
+    
+        }
+
+        buscarPais()
+
+    }, [])
 
   return (
     <div>
@@ -22,7 +60,7 @@ const Resultado = () => {
                         <tr key={resultado.name.common}>
                             <td><button 
                                 className="boton-nombre-pais"
-                                onClick={activarModalPais}
+                                onClick={() => activarModalPais(resultado)}
                                 >
                                     {resultado.translations.spa.common}</button></td>
                             <td className="capital-valor">{resultado.capital}</td>

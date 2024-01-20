@@ -2,8 +2,8 @@ import React from 'react'
 
 const NoResultado = () => {
   return (
-    <div>
-      No se han encontrado resultados
+    <div className='no-resultado-container'>
+      <p>No se han encontrado resultados.</p>
     </div>
   )
 }

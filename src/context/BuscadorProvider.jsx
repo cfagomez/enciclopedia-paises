@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import { createContext, useState, useEffect } from "react"
 
 export const BuscadorContext = createContext()
 
@@ -10,6 +10,7 @@ const BuscadorProvider = ({children}) => {
     const [resultadoBusqueda, setResultadoBusqueda] = useState([])
     const [modalPais, setModalPais] = useState(false)
     const [noResultado, setNoResultado] = useState(null)
+    const [paisSeleccionado, setPaisSeleccionado] = useState('')
 
     const handleSubmit = (e) => {
 
@@ -25,28 +26,6 @@ const BuscadorProvider = ({children}) => {
             return setError('¡Debe completar el campo vacío!')
 
         }
-
-        buscarPais()
-
-    }
-
-    const buscarPais = async () => {
-
-        try {
-
-            const url = `https://restcountries.com/v3.1/translation/${nombrePais}`
-            const respuesta = await fetch(url)
-            const resultado = await respuesta.json()
-            setResultadoBusqueda(resultado)
-
-        } catch (error) {
-
-            setNoResultado('No se han encontrado resultados')
-
-        }
-
-        setCargando(false)
-        setNombrePais('')
 
     }
 
@@ -90,14 +69,21 @@ const BuscadorProvider = ({children}) => {
 
     }
 
-    const activarModalPais = () => {
+    const activarModalPais = (resultado) => {
 
         setModalPais(!modalPais)
+        seleccionarPais(resultado)
+
+    }
+
+    const seleccionarPais = (pais) => { 
+
+        setPaisSeleccionado(pais)
 
     }
 
   return (
-    <BuscadorContext.Provider value={{nombrePais, handleChangeNombrePais, handleSubmit, cargando, error, cerrarModalError, resultadoBusqueda, miembroONU, soberaniaPais, activarModalPais, modalPais, noResultado}}>
+    <BuscadorContext.Provider value={{nombrePais, setNombrePais, handleChangeNombrePais, handleSubmit, cargando, setCargando, error, cerrarModalError, resultadoBusqueda, setResultadoBusqueda, miembroONU, soberaniaPais, activarModalPais, modalPais, noResultado, paisSeleccionado}}>
         {children}
     </BuscadorContext.Provider>
   )

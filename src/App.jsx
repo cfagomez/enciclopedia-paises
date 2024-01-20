@@ -4,11 +4,10 @@ import Resultado from "./components/Resultado"
 import Spinner from "./components/Spinner"
 import useBuscador from "./hooks/useBuscador"
 import ModalPais from "./components/ModalPais"
-import NoResultado from "./components/NoResultado"
 
 function App() {
 
-  const {cargando, error, modalPais, resultadoBusqueda, noResultado} = useBuscador()
+  const {cargando, error, modalPais} = useBuscador()
 
   return (
     <>
@@ -26,10 +25,14 @@ function App() {
         <h1>Países del mundo</h1>
         <hr />
         {
-            cargando ? <Spinner /> : resultadoBusqueda?.name ? <Resultado /> : noResultado ? <NoResultado /> : null
+
+          cargando ? <Spinner /> : <Resultado />
+
         }
         {
+
           modalPais && <ModalPais />
+
         }
       </main>
     </>
