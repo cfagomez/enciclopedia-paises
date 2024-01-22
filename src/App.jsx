@@ -5,6 +5,7 @@ import Spinner from "./components/Spinner"
 import useBuscador from "./hooks/useBuscador"
 import ModalPais from "./components/ModalPais"
 import NoResultado from "./components/NoResultado"
+import MenuFiltros from "./components/MenuFiltros"
 
 function App() {
 
@@ -24,6 +25,8 @@ function App() {
       <hr />
       <main>
         <h1>Países del mundo</h1>
+        <hr />
+        <MenuFiltros />
         <hr />
         {
 

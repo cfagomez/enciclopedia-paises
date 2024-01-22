@@ -12,6 +12,7 @@ const BuscadorProvider = ({children}) => {
     const [noResultado, setNoResultado] = useState(false)
     const [paisSeleccionado, setPaisSeleccionado] = useState('')
     const [resultadoBusqueda, setResultadoBusqueda] = useState([])
+    const [filtros, setFiltros] = useState('')
 
     useEffect(() => {
 
@@ -91,6 +92,24 @@ const BuscadorProvider = ({children}) => {
 
     }
 
+    const filtrarContinente = (continente) => {
+
+        const continenteMayuscula = continente.charAt(0).toUpperCase() + continente.slice(1)
+
+        const continenteFiltrado = listaPaises.filter( p => p.region === continenteMayuscula)
+
+        if (continenteFiltrado.length === 0) {
+
+            setNoResultado(true)
+
+            return
+
+        }
+
+        setResultadoBusqueda(continenteFiltrado)
+
+    }
+
     const handleChangeNombrePais = (e) => {
 
         setNombrePais(e.target.value)
@@ -152,8 +171,14 @@ const BuscadorProvider = ({children}) => {
 
     }
 
+    const modificarFiltro = (tipoFiltro) => {
+
+        setFiltros(tipoFiltro)
+
+    }
+
   return (
-    <BuscadorContext.Provider value={{nombrePais, setNombrePais, handleChangeNombrePais, handleSubmit, cargando, setCargando, error, cerrarModalError, listaPaises, setListaPaises, miembroONU, soberaniaPais, activarModalPais, modalPais, noResultado, paisSeleccionado, resultadoBusqueda, limpiarResultadoBusqueda}}>
+    <BuscadorContext.Provider value={{nombrePais, setNombrePais, handleChangeNombrePais, handleSubmit, cargando, setCargando, error, cerrarModalError, listaPaises, setListaPaises, miembroONU, soberaniaPais, activarModalPais, modalPais, noResultado, paisSeleccionado, resultadoBusqueda, limpiarResultadoBusqueda, modificarFiltro, filtros, filtrarContinente}}>
         {children}
     </BuscadorContext.Provider>
   )
