@@ -6,6 +6,23 @@ const ListadoPaises = () => {
 
   return (
     <div className="contenedor-tabla">
+      {
+        resultadoBusqueda.length > 0 ? (
+
+            <button 
+                className="volver-atras-boton"
+                onClick={limpiarResultadoBusqueda}
+            >
+                Volver al listado completo
+            </button>
+
+        ) : (
+
+            null
+
+        )
+      }
+      <hr />
       <table>
         <tbody>
             <tr>
@@ -22,12 +39,19 @@ const ListadoPaises = () => {
                         resultadoBusqueda.map( resultado => (
 
                             <tr key={resultado.name.common}>
-                                <td><button 
+                                <td>
+                                    <button 
                                     className="boton-nombre-pais"
                                     onClick={() => activarModalPais(resultado)}
                                     >
-                                        {resultado.translations.spa.common}</button></td>
-                                <td className="capital-valor">{resultado.capital}</td>
+                                        {resultado.translations.spa.common}
+                                    </button>
+                                </td>
+                                <td className="capital-valor">
+                                    {
+                                        resultado.capital ? resultado.capital : '-'
+                                    }
+                                </td>
                                 <td className="continente-valor">{resultado.region}</td>
                                 <td className="estatus-valor">{miembroONU(resultado.unMember)}</td>
                                 <td className="soberania-valor">{soberaniaPais(resultado.independent)}</td>
@@ -52,7 +76,11 @@ const ListadoPaises = () => {
                                     onClick={() => activarModalPais(resultado)}
                                     >
                                         {resultado.translations.spa.common}</button></td>
-                                <td className="capital-valor">{resultado.capital}</td>
+                                <td className="capital-valor">
+                                    {
+                                        resultado.capital ? resultado.capital : '-'
+                                    }
+                                </td>
                                 <td className="continente-valor">{resultado.region}</td>
                                 <td className="estatus-valor">{miembroONU(resultado.unMember)}</td>
                                 <td className="soberania-valor">{soberaniaPais(resultado.independent)}</td>
@@ -71,23 +99,6 @@ const ListadoPaises = () => {
                 }
             </tbody>
         </table>
-        {
-            resultadoBusqueda.length > 0 ? (
-
-                <button 
-                    className="volver-atras-boton"
-                        onClick={limpiarResultadoBusqueda}
-                >
-                    Volver atrás
-                </button>
-
-            ) : (
-
-                null
-
-            )
-        }
-        
     </div>
   )
 }

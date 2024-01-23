@@ -6,10 +6,11 @@ import useBuscador from "./hooks/useBuscador"
 import ModalPais from "./components/ModalPais"
 import NoResultado from "./components/NoResultado"
 import MenuFiltros from "./components/MenuFiltros"
+import BotonArriba from "./components/BotonArriba"
 
 function App() {
 
-  const {cargando, error, modalPais, listaPaises, noResultado, resultadoBusqueda} = useBuscador()
+  const {cargando, error, modalPais, noResultado, resultadoBusqueda} = useBuscador()
 
   return (
     <>
@@ -27,7 +28,6 @@ function App() {
         <h1>Países del mundo</h1>
         <hr />
         <MenuFiltros />
-        <hr />
         {
 
           cargando ? <Spinner /> : resultadoBusqueda.length > 0 ? <ListadoPaises /> : noResultado ? <NoResultado /> : <ListadoPaises />
@@ -38,6 +38,7 @@ function App() {
           modalPais && <ModalPais />
 
         }
+        <BotonArriba />
       </main>
     </>
   )

@@ -89,6 +89,7 @@ const BuscadorProvider = ({children}) => {
         }
 
         setResultadoBusqueda(paisFiltrado)
+        setNombrePais('')
 
     }
 
@@ -113,6 +114,8 @@ const BuscadorProvider = ({children}) => {
     const handleChangeNombrePais = (e) => {
 
         setNombrePais(e.target.value)
+        setResultadoBusqueda([])
+        setFiltros(null)
 
     }
 
@@ -168,6 +171,7 @@ const BuscadorProvider = ({children}) => {
         setResultadoBusqueda([])
         setNoResultado(false)
         setNombrePais('')
+        setFiltros(null)
 
     }
 

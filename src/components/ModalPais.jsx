@@ -4,20 +4,31 @@ import useBuscador from '../hooks/useBuscador'
 const ModalPais = () => {
 
     const {paisSeleccionado, activarModalPais} = useBuscador()
-    const {name, flags, capital, languages, area, population, currencies, subregion, timezones, coatOfArms} = paisSeleccionado
+    const {name, flags, area, population, timezones, coatOfArms} = paisSeleccionado
     const {common, official} = name
-    const {svg, alt} = flags
+    const {svg} = flags
     const {svg: imagenEscudo} = coatOfArms
 
-    const lenguajesToArray = Object.values(languages)
-    const lenguajesToString = lenguajesToArray.toString()
-    const lenguajes = lenguajesToString.replace(',', ', ')
+    let lenguajes
+    let moneda
 
-    const monedaProperty = Object.values(currencies)
-    const monedaObject = monedaProperty[0]
-    const monedaToArray = Object.values(monedaObject)
-    const monedaToString = monedaToArray.toString()
-    const moneda = monedaToString.replace(',', ' ')
+    if (paisSeleccionado.languages) {
+
+        const lenguajesToArray = Object.values(paisSeleccionado.languages)
+        const lenguajesToString = lenguajesToArray.toString()
+        lenguajes = lenguajesToString.replace(',', ', ')
+
+    }
+
+    if (paisSeleccionado.currencies) {
+
+        const monedaProperty = Object.values(paisSeleccionado.currencies)
+        const monedaObject = monedaProperty[0]
+        const monedaToArray = Object.values(monedaObject)
+        const monedaToString = monedaToArray.toString()
+        moneda = monedaToString.replace(',', ' ')
+
+    }
 
     const husoHorarioToString = timezones.toString()
     const husoHorario = husoHorarioToString.replaceAll(',', ', ')
@@ -33,7 +44,9 @@ const ModalPais = () => {
                 <div className='bandera-container'>
                     <img 
                         src={svg} 
-                        alt={alt}
+                        alt={
+                            flags.alt ? flags.alt : '-'
+                        }
                         width="135px"
                         height="68px"
                     />
@@ -52,11 +65,19 @@ const ModalPais = () => {
             <div className='datos-extra-container'>
                 <div className='dato-extra-container'>
                     <p>Capital</p>
-                    <p>{capital}</p>
+                    <p>
+                        {
+                            paisSeleccionado.capital ? paisSeleccionado.capital : '-'
+                        }
+                    </p>
                 </div>
                 <div className='dato-extra-container'>
                     <p>Idiomas</p>
-                    <p>{lenguajes}</p>
+                    <p>
+                        {
+                            paisSeleccionado.languages ? lenguajes : '-'
+                        }
+                    </p>
                 </div>
                 <div className='dato-extra-container'>
                     <p>Superficie</p>
@@ -68,11 +89,19 @@ const ModalPais = () => {
                 </div>
                 <div className='dato-extra-container'>
                     <p>Moneda</p>
-                    <p>{moneda}</p>
+                    <p>
+                        {
+                            paisSeleccionado.currencies ? moneda : '-'
+                        }
+                    </p>
                 </div>
                 <div className='dato-extra-container'>
                     <p>Continente</p>
-                    <p>{subregion}</p>
+                    <p>
+                        {
+                            paisSeleccionado.subregion ? paisSeleccionado.subregion : '-'
+                        }
+                    </p>
                 </div>
                 <div className='dato-extra-container'>
                     <p>Huso horario:</p>

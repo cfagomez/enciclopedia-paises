@@ -36,7 +36,6 @@ const MenuFiltros = () => {
               ))
             }
           </select>
-
         )
       }   
     </div>
