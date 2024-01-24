@@ -13,11 +13,11 @@ const Formulario = () => {
                 type="text"
                 value={nombrePais}
                 onChange={handleChangeNombrePais}
-                placeholder='Buscar en Minapedia...'
+                placeholder='Search in Minapedia...'
             />
             <input 
                 type="submit"
-                value="buscar"
+                value="search"
             />
         </div>
     </form>

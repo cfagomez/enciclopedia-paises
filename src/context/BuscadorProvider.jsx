@@ -65,7 +65,7 @@ const BuscadorProvider = ({children}) => {
 
             setCargando(false)
 
-            return setError('¡Debe completar el campo vacío!')
+            return setError('¡Empty field!')
 
         }
 
@@ -79,6 +79,8 @@ const BuscadorProvider = ({children}) => {
         const paisMayuscula = pais.charAt(0).toUpperCase() + pais.slice(1)
 
         const paisFiltrado = listaPaises.filter( p => p.name.common === paisMayuscula)
+
+        console.log(paisFiltrado)
 
         if (paisFiltrado.length === 0) {
 
@@ -129,11 +131,11 @@ const BuscadorProvider = ({children}) => {
 
         if (estado === true) {
 
-            return ('Miembro')
+            return ('Member')
 
         } else {
 
-            return ('No es miembro')
+            return ('Non member')
 
         }
 
@@ -143,11 +145,11 @@ const BuscadorProvider = ({children}) => {
 
         if (estado === true) {
 
-            return ('Reconocida')
+            return ('Recognized')
 
         } else {
 
-            return ('No reconocida')
+            return ('Not recognized')
 
         }
 

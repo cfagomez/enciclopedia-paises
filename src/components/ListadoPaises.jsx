@@ -13,7 +13,7 @@ const ListadoPaises = () => {
                 className="volver-atras-boton"
                 onClick={limpiarResultadoBusqueda}
             >
-                Volver al listado completo
+                Return to full list
             </button>
 
         ) : (
@@ -26,12 +26,12 @@ const ListadoPaises = () => {
       <table>
         <tbody>
             <tr>
-                <th className="pais">Estado soberano</th>
+                <th className="pais">Country</th>
                 <th className="capital">Capital</th>
-                <th className="continente">Continente</th>
-                <th className="estatus">Estatus ONU</th>
-                <th className="soberania">Soberanía</th>
-                <th className="bandera">Bandera</th>
+                <th className="continente">Continent</th>
+                <th className="estatus">UN Status</th>
+                <th className="soberania">Sovereignty</th>
+                <th className="bandera">Flag</th>
             </tr>
                 {
                     resultadoBusqueda.length > 0 ? (
@@ -44,7 +44,7 @@ const ListadoPaises = () => {
                                     className="boton-nombre-pais"
                                     onClick={() => activarModalPais(resultado)}
                                     >
-                                        {resultado.translations.spa.common}
+                                        {resultado.name.common}
                                     </button>
                                 </td>
                                 <td className="capital-valor">
@@ -75,7 +75,7 @@ const ListadoPaises = () => {
                                     className="boton-nombre-pais"
                                     onClick={() => activarModalPais(resultado)}
                                     >
-                                        {resultado.translations.spa.common}</button></td>
+                                        {resultado.name.common}</button></td>
                                 <td className="capital-valor">
                                     {
                                         resultado.capital ? resultado.capital : '-'

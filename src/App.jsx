@@ -25,7 +25,7 @@ function App() {
       </header>
       <hr />
       <main>
-        <h1>Países del mundo</h1>
+        <h1>Countries of the world</h1>
         <hr />
         <MenuFiltros />
         {

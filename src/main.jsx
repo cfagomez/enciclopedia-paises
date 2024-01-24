@@ -7,7 +7,7 @@ import BuscadorProvider from './context/BuscadorProvider.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BuscadorProvider>
-      <App />
+        <App />
     </BuscadorProvider>
   </React.StrictMode>,
 )

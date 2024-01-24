@@ -8,11 +8,11 @@ const MenuFiltros = () => {
 
   return (
     <div className='filtros-container'>
-      <h2>Filtros:</h2>
+      <h2>Filters:</h2>
       <button 
         onClick={() => modificarFiltro('continente')}
       >
-        Continente 
+        Continent 
       </button>
       {
 
@@ -22,7 +22,7 @@ const MenuFiltros = () => {
             name="continente"
             onChange={(e) => filtrarContinente(e.target.value)}
           >
-            <option value="">-- Seleccione una opción --</option>
+            <option value="">-- Select an option --</option>
             {
               CONTINENTES.map(continente => (
                 

@@ -50,7 +50,7 @@ const ModalPais = () => {
                         width="135px"
                         height="68px"
                     />
-                    <p>Bandera</p>
+                    <p>Flag</p>
                 </div>
                 <div className='bandera-container'>
                     <img 
@@ -59,7 +59,7 @@ const ModalPais = () => {
                         width="105px"
                         height="105px" 
                     />
-                    <p>Escudo</p>
+                    <p>Coat of arms</p>
                 </div>
             </div>
             <div className='datos-extra-container'>
@@ -72,7 +72,7 @@ const ModalPais = () => {
                     </p>
                 </div>
                 <div className='dato-extra-container'>
-                    <p>Idiomas</p>
+                    <p>Language</p>
                     <p>
                         {
                             paisSeleccionado.languages ? lenguajes : '-'
@@ -80,15 +80,15 @@ const ModalPais = () => {
                     </p>
                 </div>
                 <div className='dato-extra-container'>
-                    <p>Superficie</p>
+                    <p>Area</p>
                     <p>{area}</p>
                 </div>
                 <div className='dato-extra-container'>
-                    <p>Población</p>
+                    <p>Population</p>
                     <p>{population}</p>
                 </div>
                 <div className='dato-extra-container'>
-                    <p>Moneda</p>
+                    <p>Currency</p>
                     <p>
                         {
                             paisSeleccionado.currencies ? moneda : '-'
@@ -96,7 +96,7 @@ const ModalPais = () => {
                     </p>
                 </div>
                 <div className='dato-extra-container'>
-                    <p>Continente</p>
+                    <p>Continent</p>
                     <p>
                         {
                             paisSeleccionado.subregion ? paisSeleccionado.subregion : '-'
@@ -104,7 +104,7 @@ const ModalPais = () => {
                     </p>
                 </div>
                 <div className='dato-extra-container'>
-                    <p>Huso horario:</p>
+                    <p>Time zone:</p>
                     <p>{husoHorario}</p>
                 </div>
             </div>
@@ -113,7 +113,7 @@ const ModalPais = () => {
                 className='boton-modal-pais'
                 onClick={activarModalPais}
             >
-                Cerrar
+                Close
             </button>
         </div>
     </div>

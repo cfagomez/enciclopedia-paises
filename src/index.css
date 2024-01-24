@@ -355,7 +355,7 @@ input[type="submit"]:active {
 
   .error-modal-content {
 
-    width: fit-content;
+    width: 25%;
 
   }
 
@@ -733,10 +733,10 @@ table hr {
   width: fit-content;
   color: rgb(15, 15, 15);
   background-color: rgb(251, 251, 251);
-  border: none;
-  padding: 0;
+  border: 2px solid rgb(15, 15, 15);
+  padding: 5px 10px;
   font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: 600;
   color: rgb(15, 15, 15);
   text-align: left;
 
@@ -744,7 +744,6 @@ table hr {
 
 .filtros-container button:hover {
 
-  font-weight: 600;
   cursor: pointer;
 
 }
@@ -752,6 +751,7 @@ table hr {
 .filtros-container button:active {
 
   color: rgb(250, 131, 52);
+  border-color: rgb(250, 131, 52);
 
 }
 

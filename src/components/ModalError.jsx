@@ -13,7 +13,7 @@ const ModalError = () => {
                 type="button"
                 onClick={cerrarModalError}
             >
-              Cerrar
+              Close
             </button>
         </div>
     </div>

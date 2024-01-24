@@ -7,12 +7,12 @@ const NoResultado = () => {
 
   return (
     <div className='no-resultado-container'>
-      <p>No se han encontrado resultados.</p>
+      <p>No results found.</p>
       <button 
         className="volver-atras-boton"
         onClick={limpiarResultadoBusqueda}
       >
-        Volver atrás
+        Back
     </button>
     </div>
   )
