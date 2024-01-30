@@ -1,8 +1,9 @@
 import useBuscador from "../hooks/useBuscador"
+import { miembroONU, soberaniaPais } from "../helpers"
 
 const ListadoPaises = () => {
 
-    const {listaPaises, miembroONU, soberaniaPais, activarModalPais, resultadoBusqueda, limpiarResultadoBusqueda} = useBuscador()
+    const {listaPaises, activarModalPais, resultadoBusqueda, limpiarResultadoBusqueda} = useBuscador()
 
   return (
     <div className="contenedor-tabla">

@@ -10,7 +10,7 @@ import BotonArriba from "./components/BotonArriba"
 
 function App() {
 
-  const {cargando, error, modalPais, noResultado, resultadoBusqueda} = useBuscador()
+  const {cargando, error, modalPais, noResultado, resultadoBusqueda, nombrePais} = useBuscador()
 
   return (
     <>
@@ -25,9 +25,11 @@ function App() {
       </header>
       <hr />
       <main>
-        <h1>Countries of the world</h1>
+        <h1>Countries of the World</h1>
         <hr />
-        <MenuFiltros />
+        {
+          resultadoBusqueda.length === 0 ? <MenuFiltros /> : <p className="p-results">Results founded: {resultadoBusqueda.length}</p>
+        }
         {
 
           cargando ? <Spinner /> : resultadoBusqueda.length > 0 ? <ListadoPaises /> : noResultado ? <NoResultado /> : <ListadoPaises />

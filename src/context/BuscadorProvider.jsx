@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect} from "react"
+import { mayusculaPalabraCompuesta } from "../helpers"
 
 export const BuscadorContext = createContext()
 
@@ -55,7 +56,6 @@ const BuscadorProvider = ({children}) => {
 
     const handleSubmit = (e) => {
 
-        setCargando(true)
         setNoResultado(false)
         setResultadoBusqueda([])
 
@@ -70,28 +70,38 @@ const BuscadorProvider = ({children}) => {
         }
 
         filtrarPais(nombrePais)
-        setCargando(false)
 
     }
 
-    const filtrarPais = (pais) => {
+    const filtrarPais = async (pais) => {
 
-        const paisMayuscula = pais.charAt(0).toUpperCase() + pais.slice(1)
+        setCargando(true)
 
-        const paisFiltrado = listaPaises.filter( p => p.name.common === paisMayuscula)
+        try {
 
-        console.log(paisFiltrado)
+            const url = `https://restcountries.com/v3.1/name/${pais}`
+            const resultado = await fetch(url)
+            const respuesta = await resultado.json()
+            setCargando(false)
+            
+            if (respuesta.status) {
 
-        if (paisFiltrado.length === 0) {
+                setNoResultado(true)
 
-            setNoResultado(true)
+            } else {
 
-            return
+                setResultadoBusqueda(respuesta)
+
+            }
+            
+        } catch (error) {
+
+            console.log(error)
 
         }
 
-        setResultadoBusqueda(paisFiltrado)
         setNombrePais('')
+        setCargando(false)
 
     }
 
@@ -127,34 +137,6 @@ const BuscadorProvider = ({children}) => {
 
     }
 
-    const miembroONU = (estado) => {
-
-        if (estado === true) {
-
-            return ('Member')
-
-        } else {
-
-            return ('Non member')
-
-        }
-
-    }
-
-    const soberaniaPais = (estado) => {
-
-        if (estado === true) {
-
-            return ('Recognized')
-
-        } else {
-
-            return ('Not recognized')
-
-        }
-
-    }
-
     const activarModalPais = (resultado) => {
 
         setModalPais(!modalPais)
@@ -184,7 +166,7 @@ const BuscadorProvider = ({children}) => {
     }
 
   return (
-    <BuscadorContext.Provider value={{nombrePais, setNombrePais, handleChangeNombrePais, handleSubmit, cargando, setCargando, error, cerrarModalError, listaPaises, setListaPaises, miembroONU, soberaniaPais, activarModalPais, modalPais, noResultado, paisSeleccionado, resultadoBusqueda, limpiarResultadoBusqueda, modificarFiltro, filtros, filtrarContinente}}>
+    <BuscadorContext.Provider value={{nombrePais, setNombrePais, handleChangeNombrePais, handleSubmit, cargando, setCargando, error, cerrarModalError, listaPaises, setListaPaises, activarModalPais, modalPais, noResultado, paisSeleccionado, resultadoBusqueda, limpiarResultadoBusqueda, modificarFiltro, filtros, filtrarContinente}}>
         {children}
     </BuscadorContext.Provider>
   )

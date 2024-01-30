@@ -13,7 +13,7 @@ const Formulario = () => {
                 type="text"
                 value={nombrePais}
                 onChange={handleChangeNombrePais}
-                placeholder='Search in Minapedia...'
+                placeholder='For example: Belgium'
             />
             <input 
                 type="submit"

@@ -523,7 +523,7 @@ table hr {
 
   display: flex;
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   padding: 10px;
   left: 0;
   top: 0;
@@ -709,6 +709,8 @@ table hr {
 
 }
 
+/* FILTROS */
+
 .filtros-container {
 
   width: 50%;
@@ -728,6 +730,14 @@ table hr {
 
 }
 
+.p-results {
+
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin: 10px 0 0 0;
+
+}
+
 .filtros-container button {
 
   width: fit-content;
@@ -736,7 +746,6 @@ table hr {
   border: 2px solid rgb(15, 15, 15);
   padding: 5px 10px;
   font-size: 1.25rem;
-  font-weight: 600;
   color: rgb(15, 15, 15);
   text-align: left;
 
@@ -745,6 +754,7 @@ table hr {
 .filtros-container button:hover {
 
   cursor: pointer;
+  font-weight: 600;
 
 }
 
@@ -752,6 +762,7 @@ table hr {
 
   color: rgb(250, 131, 52);
   border-color: rgb(250, 131, 52);
+  font-weight: 600;
 
 }
 
